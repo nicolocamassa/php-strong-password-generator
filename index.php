@@ -1,7 +1,18 @@
 <?php
     function generatePassword(){
+        $letters = 'abcdefghjkilmnopqrstuvwyxzABCDEFGHJKILMNOPQRSTUVWYXZ1234567890!£$%&/()=?';
+        $lettersArr = [];
+        $lettersLength = strlen($letters);
 
+        for($i = 0; $i < 10; $i++){
+            $randNumb = rand(0,$lettersLength);
+            $lettersArr[] = $letters[$randNumb];
+        } 
+
+        return implode('', $lettersArr);
     }
+
+    $password = generatePassword();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +34,9 @@
         </div>
     </div>
     <div class="result">
-
+        <?php 
+            echo $password;
+        ?>
     </div>
 
     <!-- TODO: 
