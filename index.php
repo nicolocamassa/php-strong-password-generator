@@ -1,18 +1,22 @@
 <?php
-    function generatePassword(){
-        $letters = 'abcdefghjkilmnopqrstuvwyxzABCDEFGHJKILMNOPQRSTUVWYXZ1234567890!£$%&/()=?';
-        $lettersArr = [];
-        $lettersLength = strlen($letters);
+function generatePassword()
+{
+    $letters = 'abcdefghjkilmnopqrstuvwyxzABCDEFGHJKILMNOPQRSTUVWYXZ1234567890!"$=%&/()';
+    $lettersArr = [];
+    $lettersLength = strlen($letters);
 
-        for($i = 0; $i < 10; $i++){
-            $randNumb = rand(0,$lettersLength);
+    if (isset($_GET['passwordLength']) && $_GET['passwordLength'] != '') {
+
+        for ($i = 0; $i < $_GET['passwordLength']; $i++) {
+            $randNumb = rand(0, $lettersLength - 1);
             $lettersArr[] = $letters[$randNumb];
-        } 
+        }
 
-        return implode('', $lettersArr);
+        return implode($lettersArr);
     }
+}
 
-    $password = generatePassword();
+$password = generatePassword();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,15 +38,11 @@
         </div>
     </div>
     <div class="result">
-        <?php 
-            echo $password;
+        <?php
+        echo $password;
         ?>
     </div>
 
-    <!-- TODO: 
-         Ricavare da una form la lunghezza della password da generare [GET] 
-         Passare il dato ad una funzione che servirà alla generazione
-    -->
 </body>
 
 </html>
