@@ -1,22 +1,7 @@
 <?php
-function generatePassword()
-{
-    $letters = 'abcdefghjkilmnopqrstuvwyxzABCDEFGHJKILMNOPQRSTUVWYXZ1234567890!"$=%&/()';
-    $lettersArr = [];
-    $lettersLength = strlen($letters);
+    require __DIR__.'/functions.php';
 
-    if (isset($_GET['passwordLength']) && $_GET['passwordLength'] != '') {
-
-        for ($i = 0; $i < $_GET['passwordLength']; $i++) {
-            $randNumb = rand(0, $lettersLength - 1);
-            $lettersArr[] = $letters[$randNumb];
-        }
-
-        return implode($lettersArr);
-    }
-}
-
-$password = generatePassword();
+    $password = generatePassword();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +28,10 @@ $password = generatePassword();
         ?>
     </div>
 
+    <!-- TODO: Milestone 3 (BONUS), Milestone 4 (BONUS) 
+               Mostrare la password in un'altra finestra
+               Dare all'utente la possibilità di filtrare e scegliere la generazione
+    -->
 </body>
 
 </html>
